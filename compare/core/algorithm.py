@@ -16,10 +16,16 @@ from ..model import (
     SimilarityScore
 )
 
+import sys
+
 try:
     nlp = spacy.load("en_core_web_sm")
 except:
     spacy.cli.download("en_core_web_sm")
+
+    print("Successfully downloaded spaCy model, please restart your program.")
+    sys.exit(1)
+    
 
 def embed_text(text: str) -> np.ndarray:
     doc = nlp(text)
