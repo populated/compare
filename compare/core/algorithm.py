@@ -61,8 +61,7 @@ class TextComparer:
     ) -> Dict[str, Union[Response, SimilarityScore]]:
         input_embedding = self.vectorizer.transform([input_text]).toarray()[0]
         similarities = [
-            (text, advanced_similarity(input_text, text) if advanced else
-             1 - cosine(input_embedding, text_embedding))
+            (text, advanced_similarity(input_text, text) if advanced else 1 - cosine(input_embedding, text_embedding))
             for text, text_embedding in zip(self.texts, self.embeddings)
         ]
         similarities.sort(key=lambda x: x[1], reverse=True)
