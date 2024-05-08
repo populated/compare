@@ -1,7 +1,10 @@
 from setuptools import setup
+
+import requests
 import re
 
-version = "1.0.1"
+version: str = "1.0.2"
+
 if not version:
     raise RuntimeError("Version is not set!")
 
