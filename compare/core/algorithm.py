@@ -68,7 +68,7 @@ class TextComparer:
         similarities.sort(key=lambda x: x[1], reverse=True)
 
         closest, score = similarities[0]
-        similar: str = [text for text, score in similarities[1:] if score >= SIMILARITY_THRESHOLD]
+        similar = [text for text, score in similarities[1:] if score >= SIMILARITY_THRESHOLD]
 
         return ResultScore(
             closest=closest,
