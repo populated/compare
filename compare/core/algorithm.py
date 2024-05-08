@@ -13,7 +13,8 @@ from ..model import (
     SIMILARITY_THRESHOLD,
     TextEmbedding,
     TextPair,
-    SimilarityScore
+    SimilarityScore,
+    ResultScore
 )
 
 import sys
@@ -35,8 +36,8 @@ def advanced_similarity(
     text1: str,
     text2: str
 ) -> float:
-    vec1 = embed_text(text1)
-    vec2 = embed_text(text2)
+    vec1: np.ndarray = embed_text(text1)
+    vec2: np.ndarry = embed_text(text2)
 
     _, _, v1 = np.linalg.svd(vec1)
     _, _, v2 = np.linalg.svd(vec2)
@@ -47,17 +48,17 @@ def advanced_similarity(
 
 class TextComparer:
     def __init__(self, texts: List[str]):
-        self.texts = texts
-        self.vectorizer = TfidfVectorizer()
-        self.embeddings = self._calculate_embeddings()
+        self.texts: List[str] = texts
+        self.vectorizer: TfidVectorizer() = TfidfVectorizer()
+        self.embeddings: List[TextEmbedding] = self._calculate_embeddings()
 
-    def _calculate_embeddings(self: "TextComparer") -> List[TextEmbedding]:
+    def _calculate_embeddings(self: TextComparer) -> List[TextEmbedding]:
         return self.vectorizer.fit_transform(self.texts).toarray()
 
     def compare_texts(
-        self: "TextComparer",
+        self: TextComparer,
         input_text: str,
-        advanced: bool = False
+        advanced: Optional[bool] = False
     ) -> Dict[str, Union[Response, SimilarityScore]]:
         input_embedding = self.vectorizer.transform([input_text]).toarray()[0]
         similarities = [
@@ -67,13 +68,13 @@ class TextComparer:
         similarities.sort(key=lambda x: x[1], reverse=True)
 
         closest, score = similarities[0]
-        similar = [text for text, score in similarities[1:] if score >= SIMILARITY_THRESHOLD]
+        similar: str = [text for text, score in similarities[1:] if score >= SIMILARITY_THRESHOLD]
 
-        return {
-            "closest": closest,
-            "score": score,
-            "similar": similar
-        }
+        return ResultScore(
+            closest=closest,
+            score=score,
+            similar=similar
+        )
 
 __all__ = [
     "embed_text",
