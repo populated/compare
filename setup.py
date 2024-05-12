@@ -1,6 +1,5 @@
 from setuptools import setup
 
-import requests
 import re
 
 version: str = "1.0.2"
