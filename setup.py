@@ -20,7 +20,8 @@ setup(
         "pydantic",
         "scikit-learn",
         "spacy",
-        "numpy"
+        "numpy",
+        "python-Levenshtein"
     ],
     python_requires=">=3.8.0",
 )
