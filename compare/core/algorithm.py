@@ -83,8 +83,9 @@ class TextComparer:
         lev_distance = levenshtein_distance(input_text, text)
         lev_similarity = 1 - (lev_distance / max(len(input_text), len(text)))
         
-        combined_score = 0.5 * embedding_sim + 0.5 * lev_similarity
+        combined_score = 0.7 * embedding_sim + 0.3 * lev_similarity
         return combined_score
+
 
 __all__ = [
     "embed_text",
