@@ -6,7 +6,7 @@ import numpy as np
 
 Response = Dict[str, Union[str, float]]
 Responses = List[str]
-SIMILARITY_THRESHOLD = 0.6
+SIMILARITY_THRESHOLD = 0.5
 
 TextEmbedding = np.ndarray
 TextPair = Tuple[str, str]
