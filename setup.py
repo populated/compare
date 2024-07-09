@@ -2,7 +2,7 @@ from setuptools import setup
 
 import re
 
-version: str = "1.0.2"
+version: str = "1.0.5"
 
 if not version:
     raise RuntimeError("Version is not set!")
