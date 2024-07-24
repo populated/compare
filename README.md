@@ -7,4 +7,4 @@
 * Allows for advanced checking, but not recommended for smaller datasets.
 
 # Credits
-[alluding](https://github.com/alluding)
+[populated](https://github.com/populated)
